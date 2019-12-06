@@ -9,7 +9,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentIndex=0;
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,32 +18,29 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget _page(int actualPage){
+  Widget _page(int actualPage) {
     switch (actualPage) {
-      case 0: return MapsPage();
-      case 1: return DirreccionesPage();
+      case 0:
+        return MapsPage();
+      case 1:
+        return DirreccionesPage();
       default:
         return MapsPage();
     }
   }
 
-  Widget _bottonNavigationBar(){
+  Widget _bottonNavigationBar() {
     return BottomNavigationBar(
       currentIndex: currentIndex,
-      onTap: (index){
+      onTap: (index) {
         setState(() {
-          currentIndex=index;
+          currentIndex = index;
         });
       },
       items: [
+        BottomNavigationBarItem(icon: Icon(Icons.map), title: Text("Maps")),
         BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          title: Text("Maps")
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.brightness_5),
-          title: Text("Dirrecciones")
-        ),
+            icon: Icon(Icons.brightness_5), title: Text("Dirrecciones")),
       ],
     );
   }
