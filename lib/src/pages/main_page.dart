@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:qrrecognitions_maps/src/models/scan_model.dart';
 
 import 'package:qrrecognitions_maps/src/pages/dirreciones_page.dart';
 import 'package:qrrecognitions_maps/src/pages/maps_page.dart';
 import 'package:qrcode_reader/qrcode_reader.dart';
+import 'package:qrrecognitions_maps/src/providers/db_provider.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -70,7 +72,6 @@ class _MainPageState extends State<MainPage> {
     //https://pub.dev/
     //  https://maps.google.com/local?q=4.637452993777063,-74.08435810101162
     //
-    String futureString = '';
 /*
     try {
       futureString = await new QRCodeReader().scan();
@@ -78,8 +79,15 @@ class _MainPageState extends State<MainPage> {
       futureString = e.toString();
     }
     print(futureString);
+    */
+
+    String futureString = 'https://pub.dev/';
+
     if (futureString != null) {
-      print("Tenemos informacion");
-    } */
+      final scan = ScanModel(valor: futureString);
+      DBProvider.db.nuevoScan(scan);
+    }
+  
   }
+
 }
