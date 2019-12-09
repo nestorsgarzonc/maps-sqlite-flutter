@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qrrecognitions_maps/src/pages/main_page.dart';
- 
+
 void main() => runApp(MyApp());
- 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'QR scanner',
       initialRoute: 'home',
       routes: {
-          'home': (BuildContext context)=>MainPage(),
+        'home': (BuildContext context) => MainPage(),
       },
       theme: ThemeData(primaryColor: Colors.deepPurple),
     );
