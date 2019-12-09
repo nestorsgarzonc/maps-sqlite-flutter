@@ -36,9 +36,32 @@ class DBProvider {
     return res;
   }
 
-  nuevoScan(ScanModel nuevoScan)async{
-    final db=await database;
-    final res=await db.insert('Scans', nuevoScan.toJson());
+  nuevoScan(ScanModel nuevoScan) async {
+    final db = await database;
+    final res = await db.insert('Scans', nuevoScan.toJson());
     return res;
+  }
+
+  //SELECT-get info
+  Future<ScanModel> getScanId(int id) async {
+    final db = await database;
+    final res = await db.query('Scans', where: 'id=?', whereArgs: [id]);
+    return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
+  }
+
+  Future<List<ScanModel>> getTodosScan() async {
+    final db = await database;
+    final res = await db.query('Scans');
+    List<ScanModel> list =
+        res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
+    return list;
+  }
+
+  Future<List<ScanModel>> getScansTipo(String tipo) async {
+    final db = await database;
+    final res = await db.rawQuery("SELECT * FROM Scans WHERE tipo='$tipo");
+    List<ScanModel> list =
+        res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
+    return list;
   }
 }
