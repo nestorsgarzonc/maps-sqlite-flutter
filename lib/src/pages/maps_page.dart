@@ -20,6 +20,7 @@ class MapsPage extends StatelessWidget {
             leading: Icon(Icons.cloud_queue, color: Theme.of(context).primaryColor,),
             title: Text(scans[i].valor),
             trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey,),
+            onTap: (){},
           ),
         );
       },

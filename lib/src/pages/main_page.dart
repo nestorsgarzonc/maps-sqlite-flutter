@@ -80,14 +80,13 @@ class _MainPageState extends State<MainPage> {
     }
     print(futureString);
     */
-
+    setState(() {
+      
+    });
     String futureString = 'https://pub.dev/';
-
     if (futureString != null) {
       final scan = ScanModel(valor: futureString);
       DBProvider.db.nuevoScan(scan);
     }
-  
   }
-
 }
