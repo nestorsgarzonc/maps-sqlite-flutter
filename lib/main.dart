@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       routes: {
           'home': (BuildContext context)=>MainPage(),
       },
+      theme: ThemeData(primaryColor: Colors.deepPurple),
     );
   }
 }
