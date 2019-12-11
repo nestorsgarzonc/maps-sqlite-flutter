@@ -80,9 +80,7 @@ class _MainPageState extends State<MainPage> {
     }
     print(futureString);
     */
-    setState(() {
-      
-    });
+    setState(() {});
     String futureString = 'https://pub.dev/';
     if (futureString != null) {
       final scan = ScanModel(valor: futureString);
