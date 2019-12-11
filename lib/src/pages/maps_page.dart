@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:qrrecognitions_maps/src/providers/db_provider.dart';
+import 'package:qrrecognitions_maps/src/bloc/scans_bloc.dart';
+import 'package:qrrecognitions_maps/src/models/scan_model.dart';
 
 class MapsPage extends StatelessWidget {
+  final scansBloc = ScansBloc();
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: DBProvider.db.getTodosScan(),
+    return StreamBuilder<List<ScanModel>>(
+      stream: scansBloc.scansStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -25,7 +28,7 @@ class MapsPage extends StatelessWidget {
             background: Container(
               color: Colors.red,
             ),
-            onDismissed: (direction) => DBProvider.db.deleteScans(scans[i].id),
+            onDismissed: (direction) => scansBloc.borrarScans(scans[i].id),
             child: ListTile(
               leading: Icon(
                 Icons.cloud_queue,

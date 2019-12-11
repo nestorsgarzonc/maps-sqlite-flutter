@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrrecognitions_maps/src/bloc/scans_bloc.dart';
 import 'package:qrrecognitions_maps/src/models/scan_model.dart';
 
 import 'package:qrrecognitions_maps/src/pages/dirreciones_page.dart';
@@ -12,6 +13,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final scansBloc = ScansBloc();
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class _MainPageState extends State<MainPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.delete),
-            onPressed: () {},
+            onPressed: () {
+              scansBloc.borrarTodosScan();
+            },
           )
         ],
       ),
@@ -71,7 +75,6 @@ class _MainPageState extends State<MainPage> {
   _scanQR() async {
     //https://pub.dev/
     //  https://maps.google.com/local?q=4.637452993777063,-74.08435810101162
-    //
 /*
     try {
       futureString = await new QRCodeReader().scan();
@@ -84,7 +87,7 @@ class _MainPageState extends State<MainPage> {
     String futureString = 'https://pub.dev/';
     if (futureString != null) {
       final scan = ScanModel(valor: futureString);
-      DBProvider.db.nuevoScan(scan);
+      scansBloc.agregarScans(scan);
     }
   }
 }
