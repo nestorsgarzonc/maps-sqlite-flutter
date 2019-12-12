@@ -41,7 +41,7 @@ class MapsPage extends StatelessWidget {
                 Icons.keyboard_arrow_right,
                 color: Colors.grey,
               ),
-              onTap: ()=>abrirScan(scans[i]),
+              onTap: ()=>abrirScan(context, scans[i]),
             ),
           ),
         );

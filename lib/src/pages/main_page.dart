@@ -86,15 +86,16 @@ class _MainPageState extends State<MainPage> {
     */
     setState(() {});
     String futureString = 'https://pub.dev/';
+    //String futureString = 'geo:40.724233047051705,-74.00731459101564';
     if (futureString != null) {
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScans(scan);
       if (Platform.isIOS) {
         Future.delayed(Duration(milliseconds: 750), () {
-          utils.abrirScan(scan);
+          utils.abrirScan(context, scan);
         });
       } else {
-        utils.abrirScan(scan);
+        utils.abrirScan(context, scan);
       }
     }
   }
