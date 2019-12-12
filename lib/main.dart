@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qrrecognitions_maps/src/pages/main_page.dart';
+import 'package:sqlpeoyext/src/pages/main_page.dart';
 
 void main() => runApp(MyApp());
 

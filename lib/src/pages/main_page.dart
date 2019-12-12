@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:qrrecognitions_maps/src/bloc/scans_bloc.dart';
-import 'package:qrrecognitions_maps/src/models/scan_model.dart';
+import 'package:sqlpeoyext/src/bloc/scans_bloc.dart';
+import 'package:sqlpeoyext/src/models/scan_model.dart';
 
-import 'package:qrrecognitions_maps/src/pages/dirreciones_page.dart';
-import 'package:qrrecognitions_maps/src/pages/maps_page.dart';
-import 'package:qrcode_reader/qrcode_reader.dart';
-import 'package:qrrecognitions_maps/src/providers/db_provider.dart';
+import 'dirreciones_page.dart';
+import 'maps_page.dart';
+
 
 class MainPage extends StatefulWidget {
   @override

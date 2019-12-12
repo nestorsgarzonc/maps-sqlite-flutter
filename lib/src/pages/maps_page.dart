@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qrrecognitions_maps/src/bloc/scans_bloc.dart';
-import 'package:qrrecognitions_maps/src/models/scan_model.dart';
+import 'package:sqlpeoyext/src/bloc/scans_bloc.dart';
+import 'package:sqlpeoyext/src/models/scan_model.dart';
+
 
 class MapsPage extends StatelessWidget {
   final scansBloc = ScansBloc();

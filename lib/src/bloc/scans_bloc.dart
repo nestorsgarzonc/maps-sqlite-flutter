@@ -1,6 +1,8 @@
 import 'dart:async';
 
-import 'package:qrrecognitions_maps/src/providers/db_provider.dart';
+import 'package:sqlpeoyext/src/models/scan_model.dart';
+import 'package:sqlpeoyext/src/providers/db_provider.dart';
+
 
 class ScansBloc {
   static final ScansBloc _singleton = ScansBloc._internal();
