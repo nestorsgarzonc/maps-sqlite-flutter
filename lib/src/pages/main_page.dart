@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sqlpeoyext/src/bloc/scans_bloc.dart';
 import 'package:sqlpeoyext/src/models/scan_model.dart';
+import 'package:sqlpeoyext/src/utils/utils.dart' as utils;
 
 import 'dirreciones_page.dart';
 import 'maps_page.dart';
-
 
 class MainPage extends StatefulWidget {
   @override
@@ -87,6 +89,13 @@ class _MainPageState extends State<MainPage> {
     if (futureString != null) {
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScans(scan);
+      if (Platform.isIOS) {
+        Future.delayed(Duration(milliseconds: 750), () {
+          utils.abrirScan(scan);
+        });
+      } else {
+        utils.abrirScan(scan);
+      }
     }
   }
 }
