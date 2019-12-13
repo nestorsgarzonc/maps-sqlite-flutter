@@ -13,6 +13,7 @@ class MapaPage extends StatefulWidget {
 }
 
 class _MapaPageState extends State<MapaPage> {
+  MapController mapController = new MapController();
   @override
   Widget build(BuildContext context) {
     final ScanModel scan = ModalRoute.of(context).settings.arguments;
@@ -26,7 +27,9 @@ class _MapaPageState extends State<MapaPage> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.my_location),
-              onPressed: () {},
+              onPressed: () {
+                mapController.move(scan.getLatLng(), 15);
+              },
             ),
           ],
         ),
@@ -39,6 +42,7 @@ class _MapaPageState extends State<MapaPage> {
 
   Widget _crearFlutterMap(ScanModel scan) {
     return FlutterMap(
+      mapController: mapController,
       options: MapOptions(
         center: scan.getLatLng(),
         zoom: 15,
