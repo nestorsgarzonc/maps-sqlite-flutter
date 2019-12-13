@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,6 +45,7 @@ class _MapaPageState extends State<MapaPage> {
       ),
       layers: [
         _crearMapa(),
+        _crearMarcadores(scan),
       ],
     );
   }
@@ -57,5 +60,21 @@ class _MapaPageState extends State<MapaPage> {
           'id': 'mapbox.streets'
           // streets, dark, light, outdoors, satellite
         });
+  }
+
+  _crearMarcadores(ScanModel scan) {
+    return MarkerLayerOptions(markers: <Marker>[
+      Marker(
+          width: 100,
+          height: 100,
+          point: scan.getLatLng(),
+          builder: (context) => Container(
+                child: Icon(
+                  Icons.location_on,
+                  size: 80.0,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ))
+    ]);
   }
 }
