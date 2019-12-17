@@ -85,8 +85,8 @@ class _MainPageState extends State<MainPage> {
     print(futureString);
     */
     setState(() {});
-    String futureString = 'https://pub.dev/';
-    //String futureString = 'geo:40.724233047051705,-74.00731459101564';
+    //String futureString = 'https://pub.dev/';
+    String futureString = 'geo:4.6227143,-74.0817565';
     if (futureString != null) {
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScans(scan);

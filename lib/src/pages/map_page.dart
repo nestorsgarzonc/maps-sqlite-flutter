@@ -14,6 +14,9 @@ class MapaPage extends StatefulWidget {
 
 class _MapaPageState extends State<MapaPage> {
   MapController mapController = new MapController();
+  String tipoMapa = 'streets';
+  int numeroTipoMapa = 0;
+
   @override
   Widget build(BuildContext context) {
     final ScanModel scan = ModalRoute.of(context).settings.arguments;
@@ -21,9 +24,13 @@ class _MapaPageState extends State<MapaPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Mapa",
-            style: GoogleFonts.roboto(),
+            "QR Map",
+            style: GoogleFonts.roboto(
+              fontSize: 22,
+            ),
           ),
+          centerTitle: true,
+          automaticallyImplyLeading: true, //Boton atras
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.my_location),
@@ -36,7 +43,40 @@ class _MapaPageState extends State<MapaPage> {
         body: Center(
           child: _crearFlutterMap(scan),
         ),
+        floatingActionButton: _botonFlotante(context),
       ),
+    );
+  }
+
+  Widget _botonFlotante(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        setState(() {
+          switch (numeroTipoMapa) {
+            case 0:
+              tipoMapa = 'dark';
+              numeroTipoMapa++;
+              break;
+            case 1:
+              tipoMapa = 'light';
+              numeroTipoMapa++;
+              break;
+            case 2:
+              tipoMapa = 'outdoors';
+              numeroTipoMapa++;
+              break;
+            case 3:
+              tipoMapa = 'satellite';
+              numeroTipoMapa++;
+              break;
+            default:
+              tipoMapa = 'streets';
+              numeroTipoMapa = 0;
+          }
+        });
+      },
+      backgroundColor: Theme.of(context).primaryColor,
+      child: Icon(Icons.radio_button_unchecked),
     );
   }
 
@@ -61,8 +101,7 @@ class _MapaPageState extends State<MapaPage> {
         additionalOptions: {
           'accessToken':
               'pk.eyJ1IjoibmVzdG9yc2dhcnpvbmMiLCJhIjoiY2s0Mzl4aGNpMDVxYjNmcGN4bDBzdjZqMCJ9.uH-hL_aohmm4bobt21beVg',
-          'id': 'mapbox.streets'
-          // streets, dark, light, outdoors, satellite
+          'id': 'mapbox.$tipoMapa'
         });
   }
 
@@ -75,7 +114,7 @@ class _MapaPageState extends State<MapaPage> {
           builder: (context) => Container(
                 child: Icon(
                   Icons.location_on,
-                  size: 80.0,
+                  size: 50.0,
                   color: Theme.of(context).primaryColor,
                 ),
               ))
