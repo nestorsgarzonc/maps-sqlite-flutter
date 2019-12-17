@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:sqlpeoyext/src/bloc/scans_bloc.dart';
 import 'package:sqlpeoyext/src/models/scan_model.dart';
@@ -14,7 +15,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final scansBloc = ScansBloc();
+  final scansBloc = new ScansBloc();
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -25,16 +26,18 @@ class _MainPageState extends State<MainPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.delete),
-            onPressed: () {
-              scansBloc.borrarTodosScan();
-            },
+            onPressed: scansBloc.borrarTodosScan,
           )
         ],
       ),
       body: _page(currentIndex),
       bottomNavigationBar: _bottonNavigationBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: _floatingActionButton(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.camera),
+        onPressed: () => _scanQR(context),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
     );
   }
 
@@ -65,28 +68,13 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget _floatingActionButton() {
-    return FloatingActionButton(
-      child: Icon(Icons.camera),
-      onPressed: _scanQR,
-      backgroundColor: Theme.of(context).primaryColor,
-    );
-  }
-
-  _scanQR() async {
-    //https://pub.dev/
-    //  https://maps.google.com/local?q=4.637452993777063,-74.08435810101162
-/*
+  _scanQR(BuildContext context) async {
+    String futureString;
     try {
-      futureString = await new QRCodeReader().scan();
+      futureString = await BarcodeScanner.scan();
     } catch (e) {
       futureString = e.toString();
     }
-    print(futureString);
-    */
-    setState(() {});
-    //String futureString = 'https://pub.dev/';
-    String futureString = 'geo:4.6227143,-74.0817565';
     if (futureString != null) {
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScans(scan);

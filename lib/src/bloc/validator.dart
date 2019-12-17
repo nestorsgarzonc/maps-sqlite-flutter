@@ -13,7 +13,7 @@ class Validators {
   final validarHttp =
       StreamTransformer<List<ScanModel>, List<ScanModel>>.fromHandlers(
           handleData: (scans, sink) {
-    final httpScans = scans.where((s) => s.tipo == 'http').toList();
+    final httpScans = scans.where((s) => s.tipo == 'https').toList();
     sink.add(httpScans);
   });
 }

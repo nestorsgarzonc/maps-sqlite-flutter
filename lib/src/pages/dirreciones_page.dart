@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqlpeoyext/src/bloc/scans_bloc.dart';
 import 'package:sqlpeoyext/src/models/scan_model.dart';
-import 'package:sqlpeoyext/src/utils/utils.dart';
+import 'package:sqlpeoyext/src/utils/utils.dart' as utils;
 
 class DirreccionesPage extends StatelessWidget {
   final scansBloc = ScansBloc();
@@ -41,7 +41,7 @@ class DirreccionesPage extends StatelessWidget {
                 Icons.keyboard_arrow_right,
                 color: Colors.grey,
               ),
-              onTap: () => abrirScan(context, scans[i]),
+              onTap: () => utils.abrirScan(context, scans[i]),
             ),
           ),
         );

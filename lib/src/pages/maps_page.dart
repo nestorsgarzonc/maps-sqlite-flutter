@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqlpeoyext/src/bloc/scans_bloc.dart';
 import 'package:sqlpeoyext/src/models/scan_model.dart';
-import 'package:sqlpeoyext/src/utils/utils.dart';
+import 'package:sqlpeoyext/src/utils/utils.dart' as utils;
 
 class MapsPage extends StatelessWidget {
   final scansBloc = ScansBloc();
@@ -12,7 +12,7 @@ class MapsPage extends StatelessWidget {
 
     return StreamBuilder<List<ScanModel>>(
       stream: scansBloc.scansStream,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<ScanModel>> snapshot) {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
@@ -43,7 +43,7 @@ class MapsPage extends StatelessWidget {
                 Icons.keyboard_arrow_right,
                 color: Colors.grey,
               ),
-              onTap: () => abrirScan(context, scans[i]),
+              onTap: () => utils.abrirScan(context, scans[i]),
             ),
           ),
         );
