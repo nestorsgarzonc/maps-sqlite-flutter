@@ -1,6 +1,6 @@
-# sqlpeoyext
+# QR Code reader
 
-A new Flutter project.
+This proyect contain an app that scans QR code with contains a URL or a geographic position. The app uses SQLite and MAPBOX for charge the position in a map inside the app
 
 ## Getting Started
 
