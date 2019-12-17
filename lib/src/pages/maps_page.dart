@@ -8,6 +8,8 @@ class MapsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    scansBloc.obtenerScans();
+
     return StreamBuilder<List<ScanModel>>(
       stream: scansBloc.scansStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -41,7 +43,7 @@ class MapsPage extends StatelessWidget {
                 Icons.keyboard_arrow_right,
                 color: Colors.grey,
               ),
-              onTap: ()=>abrirScan(context, scans[i]),
+              onTap: () => abrirScan(context, scans[i]),
             ),
           ),
         );
